@@ -22,8 +22,8 @@ export default function Dashboard() {
   const [userEmail, setUserEmail] = useState('')
   const [userName, setUserName] = useState('')
   const [loading, setLoading] = useState(true)
-  const [conversations, setConversations] = useState([])
-  const [moodEntries, setMoodEntries] = useState([])
+  const [conversations, setConversations] = useState<any[]>([])
+  const [moodEntries, setMoodEntries] = useState<any[]>([])
   const [stats, setStats] = useState({
     totalConversations: 0,
     totalMoods: 0,
