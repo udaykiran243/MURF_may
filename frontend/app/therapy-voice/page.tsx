@@ -148,7 +148,7 @@ export default function TherapyVoicePage() {
       formData.append('audio', audioBlob, 'message.webm');
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/voice/transcribe`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/voice/transcribe`,
         {
           method: 'POST',
           body: formData,
@@ -189,7 +189,7 @@ export default function TherapyVoicePage() {
       setVoiceResponse(aiResponse);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/voice/generate`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/voice/generate`,
         {
           method: 'POST',
           headers: {

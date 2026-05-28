@@ -61,7 +61,7 @@ export default function TherapyPage() {
       const autoLogin = async () => {
         try {
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/auth/test-user`,
+            `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/auth/test-user`,
             { method: 'POST' }
           )
           
@@ -107,7 +107,7 @@ export default function TherapyPage() {
     try {
       // Create conversation
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/therapy/conversations`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/therapy/conversations`,
         {
           method: 'POST',
           headers: {
@@ -131,7 +131,7 @@ export default function TherapyPage() {
       // Get greeting with voice
       try {
         const greetingResponse = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/voice/greeting?personality_mode=${selectedPersonality}`,
+          `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/voice/greeting?personality_mode=${selectedPersonality}`,
           {
             method: 'POST',
             headers: {
@@ -191,7 +191,7 @@ export default function TherapyPage() {
     if (conversationId) {
       try {
         await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/therapy/conversations/${conversationId}/end`,
+          `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/therapy/conversations/${conversationId}/end`,
           {
             method: 'POST',
             headers: {
@@ -230,7 +230,7 @@ export default function TherapyPage() {
     try {
       // Call backend API for AI response with voice
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'}/voice/send-message?conversation_id=${conversationId}`,
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/voice/send-message?conversation_id=${conversationId}`,
         {
           method: 'POST',
           headers: {
