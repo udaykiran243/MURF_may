@@ -1,0 +1,37 @@
+services:
+  # Backend FastAPI Service (Deployed using Docker)
+  - type: web
+    name: murf-backend
+    env: docker
+    rootDir: backend
+    plan: free # Can be changed to basic/standard for production
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: MURF_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+
+  # Frontend Next.js Service
+  - type: web
+    name: murf-frontend
+    env: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free # Can be changed to basic/standard for production
+    envVars:
+      - key: NODE_VERSION # Next 14 requires Node.js >= 18.17
+        value: "20"
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: murf-backend
+          envVarKey: RENDER_EXTERNAL_URL
